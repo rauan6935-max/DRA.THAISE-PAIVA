@@ -1,0 +1,3323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8efec">
+<title>Dra. Thaise Paiva | Gestão de Biomedicina Estética</title>
+
+<style>
+/* ==========================================
+   DRA. THAISE PAIVA
+   SISTEMA DE GESTÃO ESTÉTICA
+   ========================================== */
+
+:root {
+    --rose: #b98583;
+    --rose-dark: #956764;
+    --rose-light: #f4e3df;
+    --rose-pale: #fbf5f2;
+    --gold: #c5a16a;
+    --gold-light: #e8d4ae;
+    --text: #493735;
+    --muted: #95817e;
+    --white: #ffffff;
+    --background: #f8f4f1;
+    --border: #ebdfda;
+    --green: #52866c;
+    --red: #b85d62;
+    --blue: #6885a4;
+    --shadow: 0 8px 30px rgba(98, 60, 55, .07);
+    --radius: 18px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* CABEÇALHO */
+
+.topbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 17px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+
+.brand-logo {
+    width: 190px;
+    max-width: 40vw;
+    height: auto;
+    object-fit: contain;
+}
+
+.brand-text h1 {
+    font-family: Georgia, serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--rose-dark);
+}
+
+.brand-text p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-top: 5px;
+}
+
+.top-status {
+    text-align: right;
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    margin-right: 5px;
+}
+
+/* ESTRUTURA */
+
+.layout {
+    display: grid;
+    grid-template-columns: 245px minmax(0, 1fr);
+    min-height: calc(100vh - 85px);
+}
+
+.sidebar {
+    background: #fffaf8;
+    border-right: 1px solid var(--border);
+    padding: 24px 14px;
+}
+
+.menu-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin: 20px 12px 10px;
+    text-transform: uppercase;
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 14px;
+    margin-bottom: 5px;
+    border: 0;
+    border-radius: 11px;
+    background: transparent;
+    color: var(--text);
+    text-align: left;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.menu-button:hover {
+    background: var(--rose-light);
+}
+
+.menu-button.active {
+    background: var(--rose);
+    color: white;
+    box-shadow: 0 5px 15px #b9858330;
+}
+
+.menu-icon {
+    width: 22px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.main-content {
+    min-width: 0;
+    padding: 30px;
+}
+
+.page {
+    display: none;
+    animation: appear .2s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TÍTULOS */
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.page-heading h2 {
+    font-family: Georgia, serif;
+    font-size: 29px;
+    font-weight: 500;
+    color: var(--rose-dark);
+}
+
+.page-heading p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+/* BOTÕES */
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 17px;
+    background: var(--rose);
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    transition: .2s;
+}
+
+.btn:hover {
+    background: var(--rose-dark);
+    transform: translateY(-1px);
+}
+
+.btn-light {
+    background: var(--rose-light);
+    color: var(--rose-dark);
+}
+
+.btn-light:hover {
+    background: var(--gold-light);
+    color: var(--text);
+}
+
+.btn-danger {
+    background: #f8e5e4;
+    color: var(--red);
+}
+
+.btn-danger:hover {
+    background: var(--red);
+    color: white;
+}
+
+.btn-green {
+    background: var(--green);
+}
+
+.btn-small {
+    padding: 7px 10px;
+    font-size: 11px;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* CARDS */
+
+.card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.card-title h3 {
+    font-family: Georgia, serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--rose-dark);
+}
+
+.card-title p {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* INDICADORES */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--muted);
+}
+
+.stat-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--rose-light);
+    font-size: 20px;
+}
+
+.stat-value {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    margin-top: 16px;
+    color: var(--text);
+    overflow-wrap: anywhere;
+}
+
+.stat-caption {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+}
+
+/* FORMULÁRIOS */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.form-grid.three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.field {
+    min-width: 0;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: var(--text);
+}
+
+.field input,
+.field select,
+.field textarea,
+.search-input {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fffdfc;
+    color: var(--text);
+    padding: 12px 13px;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.search-input:focus {
+    border-color: var(--rose);
+    outline: none;
+    box-shadow: 0 0 0 3px #b9858318;
+}
+
+.field textarea {
+    min-height: 105px;
+    resize: vertical;
+}
+
+.field small {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.form-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+/* TABELAS */
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+thead {
+    background: #fcf5f2;
+}
+
+th {
+    text-align: left;
+    font-size: 11px;
+    color: var(--rose-dark);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: 14px;
+    white-space: nowrap;
+}
+
+td {
+    border-bottom: 1px solid #f0e8e4;
+    padding: 14px;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+tbody tr:hover {
+    background: #fffaf8;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 35px 15px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* ETIQUETAS */
+
+.badge {
+    display: inline-block;
+    border-radius: 30px;
+    padding: 6px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.badge-green {
+    background: #e1f2e8;
+    color: #397653;
+}
+
+.badge-yellow {
+    background: #fff0cf;
+    color: #916c22;
+}
+
+.badge-red {
+    background: #f8e2e2;
+    color: #a33e45;
+}
+
+.badge-blue {
+    background: #e5edf7;
+    color: #4b6e94;
+}
+
+/* PAINEL INICIAL */
+
+.welcome-banner {
+    position: relative;
+    overflow: hidden;
+    padding: 35px;
+    border-radius: 20px;
+    background: linear-gradient(125deg, #e9d0c9, #fbefea 70%, #f0dfc4);
+    margin-bottom: 25px;
+}
+
+.welcome-banner h2 {
+    font-family: Georgia, serif;
+    font-size: 31px;
+    font-weight: 500;
+    color: #77504b;
+}
+
+.welcome-banner p {
+    max-width: 520px;
+    margin-top: 12px;
+    color: #795d58;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.welcome-decoration {
+    position: absolute;
+    right: 35px;
+    top: -30px;
+    font-family: Georgia, serif;
+    font-size: 160px;
+    color: #ffffff50;
+    pointer-events: none;
+}
+
+/* FINANCEIRO */
+
+.finance-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.finance-box {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    background: white;
+}
+
+.finance-box p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.finance-box strong {
+    display: block;
+    margin-top: 12px;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    overflow-wrap: anywhere;
+}
+
+.income {
+    color: var(--green);
+}
+
+.expense {
+    color: var(--red);
+}
+
+/* FOTOS */
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.photo-box {
+    border: 1px dashed var(--gold);
+    border-radius: 13px;
+    padding: 15px;
+    background: var(--rose-pale);
+}
+
+.photo-box h4 {
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: var(--rose-dark);
+}
+
+.photo-preview {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: white;
+    margin-top: 10px;
+    display: none;
+}
+
+.photo-preview.visible {
+    display: block;
+}
+
+.photo-thumb {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin: 3px;
+}
+
+/* AGENDA */
+
+.appointment-item {
+    padding: 15px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.appointment-date {
+    width: 55px;
+    height: 60px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    background: var(--rose-light);
+    color: var(--rose-dark);
+}
+
+.appointment-date strong {
+    font-size: 20px;
+}
+
+.appointment-date span {
+    font-size: 10px;
+}
+
+.appointment-info {
+    flex: 1;
+    min-width: 130px;
+}
+
+.appointment-info strong {
+    font-size: 13px;
+}
+
+.appointment-info p {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 5px;
+}
+
+/* AVISOS */
+
+.notice {
+    padding: 15px;
+    border-radius: 12px;
+    background: #fff3d9;
+    border: 1px solid #ead6a9;
+    color: #765b28;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.info-box {
+    padding: 15px;
+    border-radius: 12px;
+    background: #f7e9e5;
+    color: #805752;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* CONFIGURAÇÕES */
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.settings-option {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: white;
+}
+
+.settings-option h3 {
+    font-size: 15px;
+    color: var(--rose-dark);
+    margin-bottom: 10px;
+}
+
+.settings-option p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+/* MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #35242199;
+    z-index: 500;
+    padding: 20px;
+    overflow-y: auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 700px;
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-family: Georgia, serif;
+    font-weight: 500;
+    color: var(--rose-dark);
+}
+
+.close-modal {
+    border: 0;
+    background: var(--rose-light);
+    color: var(--rose-dark);
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+/* RODAPÉ */
+
+.footer {
+    padding: 25px 10px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1100px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .form-grid.three {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .main-content {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 760px) {
+    .topbar {
+        padding: 12px 15px;
+    }
+
+    .brand-logo {
+        width: 125px;
+    }
+
+    .brand-text h1 {
+        font-size: 16px;
+    }
+
+    .brand-text p {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .top-status {
+        font-size: 10px;
+    }
+
+    .layout {
+        display: block;
+    }
+
+    .sidebar {
+        position: sticky;
+        top: 76px;
+        z-index: 90;
+        padding: 8px;
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+        overflow-x: auto;
+        display: flex;
+        gap: 5px;
+        background: #fffaf8;
+    }
+
+    .menu-label {
+        display: none;
+    }
+
+    .menu-button {
+        flex: 0 0 auto;
+        width: auto;
+        padding: 10px 12px;
+        margin: 0;
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .menu-icon {
+        font-size: 15px;
+        width: auto;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .page-heading h2 {
+        font-size: 25px;
+    }
+
+    .welcome-banner {
+        padding: 25px 20px;
+    }
+
+    .welcome-banner h2 {
+        font-size: 26px;
+    }
+
+    .welcome-decoration {
+        right: 0;
+        font-size: 110px;
+    }
+
+    .stats-grid {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-value {
+        font-size: 22px;
+    }
+
+    .stat-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+
+    .form-grid,
+    .form-grid.three,
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    .finance-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .card-title h3 {
+        font-size: 18px;
+    }
+
+    .appointment-item {
+        align-items: flex-start;
+    }
+
+    .appointment-item .actions {
+        width: 100%;
+    }
+
+    .appointment-item .actions button {
+        flex: 1;
+    }
+}
+
+@media (max-width: 380px) {
+    .top-status {
+        display: none;
+    }
+
+    .brand-logo {
+        width: 100px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media print {
+    .topbar,
+    .sidebar,
+    .no-print,
+    .form-footer,
+    button {
+        display: none !important;
+    }
+
+    .layout {
+        display: block;
+    }
+
+    .main-content {
+        padding: 0;
+    }
+
+    .page {
+        display: none !important;
+    }
+
+    .page.active {
+        display: block !important;
+    }
+
+    body {
+        background: white;
+    }
+
+    .card {
+        box-shadow: none;
+        break-inside: avoid;
+    }
+}
+
+/* TELA DE LOGIN ADICIONADA */
+body:not(.autenticado) > header,
+body:not(.autenticado) > .layout {
+    display: none !important;
+}
+.login-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #fbf5f2, #f0dfd9);
+}
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 32px;
+    box-shadow: 0 15px 45px rgba(98, 60, 55, .13);
+}
+.login-card h2 {
+    color: var(--rose-dark);
+    font-family: Georgia, serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+.login-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+.login-card label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 14px 0 7px;
+}
+.login-card input {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px;
+    font: inherit;
+}
+.login-card button {
+    width: 100%;
+    margin-top: 20px;
+}
+.login-error {
+    display: none;
+    color: #a33e45;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-gate" id="loginGate">
+    <form class="login-card" id="loginForm">
+        <h2>Dra. Thaise Paiva</h2>
+        <p>Acesse o sistema de gestão usando seu e-mail e senha.</p>
+        <label for="loginEmail">E-mail</label>
+        <input id="loginEmail" type="email" autocomplete="username" required placeholder="seu@email.com">
+        <label for="loginPassword">Senha</label>
+        <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Digite sua senha">
+        <button class="btn" type="submit">Entrar no sistema</button>
+        <div class="login-error" id="loginError" role="alert">E-mail ou senha incorretos. Tente novamente.</div>
+    </form>
+</div>
+
+
+<header class="topbar">
+    <div class="brand">
+
+        <!--
+        COLOQUE AQUI A PRIMEIRA LOGO HORIZONTAL DO PDF.
+        Se tiver a imagem separada, use o nome logo-thaise.png.
+        Deixe a imagem na mesma pasta deste HTML.
+        -->
+
+        <img
+            class="brand-logo"
+            src="logo-thaise.png"
+            alt="Logo Dra. Thaise Paiva"
+            onerror="this.style.display='none'"
+        >
+
+        <div class="brand-text">
+            <h1>Dra. Thaise Paiva</h1>
+            <p>BIOMÉDICA ESTETA</p>
+        </div>
+    </div>
+
+    <div class="top-status">
+        <span class="status-dot"></span>
+        Sistema de gestão local
+    </div>
+</header>
+
+<div class="layout">
+
+    <aside class="sidebar no-print">
+
+        <p class="menu-label">Principal</p>
+
+        <button class="menu-button active" data-page="dashboard">
+            <span class="menu-icon">⌂</span>
+            Início
+        </button>
+
+        <button class="menu-button" data-page="pacientes">
+            <span class="menu-icon">♙</span>
+            Pacientes
+        </button>
+
+        <button class="menu-button" data-page="procedimentos">
+            <span class="menu-icon">✧</span>
+            Procedimentos
+        </button>
+
+        <button class="menu-button" data-page="agenda">
+            <span class="menu-icon">▦</span>
+            Agenda
+        </button>
+
+        <p class="menu-label">Gestão</p>
+
+        <button class="menu-button" data-page="financeiro">
+            <span class="menu-icon">R$</span>
+            Financeiro
+        </button>
+
+        <button class="menu-button" data-page="relatorios">
+            <span class="menu-icon">▤</span>
+            Relatórios
+        </button>
+
+        <p class="menu-label">Sistema</p>
+
+        <button class="menu-button" data-page="backup">
+            <span class="menu-icon">⇅</span>
+            Backup de dados
+        </button>
+
+    </aside>
+
+    <main class="main-content">
+
+        <!-- =====================================
+             PÁGINA INICIAL
+             ===================================== -->
+
+        <section class="page active" id="page-dashboard">
+
+            <div class="welcome-banner">
+                <div class="welcome-decoration">T</div>
+
+                <h2>Bem-vinda ao seu espaço.</h2>
+
+                <p>
+                    Um ambiente exclusivo para organizar seus pacientes,
+                    acompanhar procedimentos, registrar resultados e
+                    administrar o financeiro da clínica.
+                </p>
+            </div>
+
+            <div class="page-heading">
+                <div>
+                    <h2>Painel geral</h2>
+                    <p>Resumo das informações cadastradas no sistema.</p>
+                </div>
+
+                <button class="btn" onclick="imprimirPagina()">
+                    Imprimir resumo
+                </button>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Pacientes</span>
+                        <span class="stat-icon">♙</span>
+                    </div>
+                    <div class="stat-value" id="dashPacientes">0</div>
+                    <div class="stat-caption">Cadastros realizados</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Procedimentos</span>
+                        <span class="stat-icon">✧</span>
+                    </div>
+                    <div class="stat-value" id="dashProcedimentos">0</div>
+                    <div class="stat-caption">Registros cadastrados</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Entradas</span>
+                        <span class="stat-icon">↗</span>
+                    </div>
+                    <div class="stat-value income" id="dashEntradas">R$ 0,00</div>
+                    <div class="stat-caption">Receitas registradas</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span class="stat-label">Saldo</span>
+                        <span class="stat-icon">◈</span>
+                    </div>
+                    <div class="stat-value" id="dashSaldo">R$ 0,00</div>
+                    <div class="stat-caption">Entradas menos saídas</div>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Próximos atendimentos</h3>
+                        <p>Compromissos registrados na agenda.</p>
+                    </div>
+
+                    <button class="btn btn-light" onclick="abrirPagina('agenda')">
+                        Ver agenda
+                    </button>
+                </div>
+
+                <div id="dashboardAgenda">
+                    <div class="empty-state">
+                        Nenhum atendimento cadastrado.
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Atividades recentes</h3>
+                        <p>Últimos procedimentos registrados.</p>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Procedimento</th>
+                                <th>Data</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="dashboardRecentes"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             PACIENTES
+             ===================================== -->
+
+        <section class="page" id="page-pacientes">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Pacientes</h2>
+                    <p>Cadastre e organize as informações dos pacientes.</p>
+                </div>
+
+                <button class="btn" onclick="novoPaciente()">
+                    + Novo paciente
+                </button>
+            </div>
+
+            <div class="notice">
+                Os dados de saúde são informações sensíveis. Mantenha o
+                dispositivo protegido e cadastre apenas as informações
+                necessárias para o atendimento, com as autorizações aplicáveis.
+            </div>
+
+            <div class="card" id="formPacienteCard">
+
+                <div class="card-title">
+                    <div>
+                        <h3 id="tituloFormPaciente">Cadastrar paciente</h3>
+                        <p>Preencha as informações abaixo.</p>
+                    </div>
+                </div>
+
+                <form id="formPaciente">
+
+                    <input type="hidden" id="pacienteId">
+
+                    <div class="form-grid three">
+
+                        <div class="field">
+                            <label for="pacNome">Nome completo *</label>
+                            <input id="pacNome" required maxlength="120">
+                        </div>
+
+                        <div class="field">
+                            <label for="pacTelefone">Telefone</label>
+                            <input id="pacTelefone" type="tel" maxlength="30">
+                        </div>
+
+                        <div class="field">
+                            <label for="pacEmail">E-mail</label>
+                            <input id="pacEmail" type="email" maxlength="150">
+                        </div>
+
+                        <div class="field">
+                            <label for="pacNascimento">Nascimento</label>
+                            <input id="pacNascimento" type="date">
+                        </div>
+
+                        <div class="field">
+                            <label for="pacData">Data do cadastro *</label>
+                            <input id="pacData" type="date" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="pacContato">Contato de emergência</label>
+                            <input id="pacContato" maxlength="100">
+                        </div>
+
+                        <div class="field full">
+                            <label for="pacAnamnese">Anamnese / histórico de saúde</label>
+                            <textarea id="pacAnamnese"
+                                placeholder="Registre as informações pertinentes ao atendimento."></textarea>
+                        </div>
+
+                        <div class="field full">
+                            <label for="pacAlergias">Alergias informadas</label>
+                            <textarea id="pacAlergias"
+                                placeholder="Registre alergias declaradas pelo paciente."></textarea>
+                        </div>
+
+                        <div class="field full">
+                            <label for="pacMedicamentos">Medicamentos informados</label>
+                            <textarea id="pacMedicamentos"
+                                placeholder="Registre medicamentos informados pelo paciente."></textarea>
+                        </div>
+
+                        <div class="field full">
+                            <label for="pacObservacoes">Observações gerais</label>
+                            <textarea id="pacObservacoes"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="form-footer">
+                        <button class="btn" type="submit">Salvar paciente</button>
+
+                        <button class="btn btn-light" type="button"
+                            onclick="limparFormPaciente()">
+                            Limpar formulário
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Lista de pacientes</h3>
+                        <p>Pesquise e consulte os cadastros.</p>
+                    </div>
+
+                    <input class="search-input"
+                        id="buscaPaciente"
+                        placeholder="Buscar paciente..."
+                        style="max-width:260px"
+                        oninput="renderPacientes()">
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>Nascimento</th>
+                                <th>Cadastro</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaPacientes"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             PROCEDIMENTOS
+             ===================================== -->
+
+        <section class="page" id="page-procedimentos">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Procedimentos</h2>
+                    <p>Histórico de atendimentos e evolução dos pacientes.</p>
+                </div>
+
+                <button class="btn" onclick="novoProcedimento()">
+                    + Novo procedimento
+                </button>
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Registrar procedimento</h3>
+                        <p>Vincule o atendimento a um paciente cadastrado.</p>
+                    </div>
+                </div>
+
+                <form id="formProcedimento">
+
+                    <input type="hidden" id="procId">
+
+                    <div class="form-grid three">
+
+                        <div class="field">
+                            <label for="procPaciente">Paciente *</label>
+                            <select id="procPaciente" required></select>
+                        </div>
+
+                        <div class="field">
+                            <label for="procNome">Procedimento *</label>
+                            <input id="procNome" required maxlength="150"
+                                placeholder="Nome do procedimento">
+                        </div>
+
+                        <div class="field">
+                            <label for="procData">Data *</label>
+                            <input id="procData" type="date" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="procValor">Valor (R$)</label>
+                            <input id="procValor" type="number"
+                                min="0" step="0.01" value="0">
+                        </div>
+
+                        <div class="field">
+                            <label for="procStatus">Status</label>
+                            <select id="procStatus">
+                                <option value="Agendado">Agendado</option>
+                                <option value="Em andamento">Em andamento</option>
+                                <option value="Realizado">Realizado</option>
+                                <option value="Cancelado">Cancelado</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="procPagamento">Situação do pagamento</label>
+                            <select id="procPagamento">
+                                <option value="Pendente">Pendente</option>
+                                <option value="Pago">Pago</option>
+                                <option value="Parcial">Parcial</option>
+                                <option value="Não se aplica">Não se aplica</option>
+                            </select>
+                        </div>
+
+                        <div class="field full">
+                            <label for="procDescricao">Descrição / observações</label>
+                            <textarea id="procDescricao"></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="card" style="background:#fffaf8;box-shadow:none">
+
+                        <div class="card-title">
+                            <div>
+                                <h3>Registro fotográfico</h3>
+                                <p>Imagens de acompanhamento antes e depois.</p>
+                            </div>
+                        </div>
+
+                        <div class="photo-grid">
+
+                            <div class="photo-box">
+                                <h4>Foto antes</h4>
+                                <div class="field">
+                                    <label for="fotoAntes">Selecionar imagem</label>
+                                    <input id="fotoAntes" type="file" accept="image/*">
+                                    <small>Imagem de até 3 MB.</small>
+                                </div>
+                                <img id="previewAntes" class="photo-preview" alt="Prévia antes">
+                            </div>
+
+                            <div class="photo-box">
+                                <h4>Foto depois</h4>
+                                <div class="field">
+                                    <label for="fotoDepois">Selecionar imagem</label>
+                                    <input id="fotoDepois" type="file" accept="image/*">
+                                    <small>Imagem de até 3 MB.</small>
+                                </div>
+                                <img id="previewDepois" class="photo-preview" alt="Prévia depois">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-footer">
+                        <button class="btn" type="submit">Salvar procedimento</button>
+                        <button class="btn btn-light" type="button"
+                            onclick="limparFormProcedimento()">
+                            Limpar formulário
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Histórico de procedimentos</h3>
+                        <p>Consulte os registros e as imagens.</p>
+                    </div>
+
+                    <input class="search-input"
+                        id="buscaProcedimento"
+                        placeholder="Buscar procedimento..."
+                        style="max-width:260px"
+                        oninput="renderProcedimentos()">
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Paciente</th>
+                                <th>Procedimento</th>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Fotos</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaProcedimentos"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             AGENDA
+             ===================================== -->
+
+        <section class="page" id="page-agenda">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Agenda</h2>
+                    <p>Organize os próximos atendimentos.</p>
+                </div>
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Novo agendamento</h3>
+                        <p>Registre a data, o horário e o paciente.</p>
+                    </div>
+                </div>
+
+                <form id="formAgenda">
+
+                    <div class="form-grid three">
+
+                        <div class="field">
+                            <label for="agendaPaciente">Paciente *</label>
+                            <select id="agendaPaciente" required></select>
+                        </div>
+
+                        <div class="field">
+                            <label for="agendaProcedimento">Procedimento *</label>
+                            <input id="agendaProcedimento" required maxlength="150">
+                        </div>
+
+                        <div class="field">
+                            <label for="agendaData">Data *</label>
+                            <input id="agendaData" type="date" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="agendaHora">Horário *</label>
+                            <input id="agendaHora" type="time" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="agendaStatus">Status</label>
+                            <select id="agendaStatus">
+                                <option value="Agendado">Agendado</option>
+                                <option value="Confirmado">Confirmado</option>
+                                <option value="Realizado">Realizado</option>
+                                <option value="Cancelado">Cancelado</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="agendaObs">Observações</label>
+                            <input id="agendaObs" maxlength="300">
+                        </div>
+
+                    </div>
+
+                    <div class="form-footer">
+                        <button class="btn" type="submit">Salvar agendamento</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Agendamentos registrados</h3>
+                        <p>Os mais próximos aparecem primeiro.</p>
+                    </div>
+                </div>
+
+                <div id="listaAgenda"></div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             FINANCEIRO
+             ===================================== -->
+
+        <section class="page" id="page-financeiro">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Financeiro</h2>
+                    <p>Controle de receitas, despesas e saldo.</p>
+                </div>
+
+                <button class="btn btn-light" onclick="exportarFinanceiroCSV()">
+                    Exportar planilha CSV
+                </button>
+            </div>
+
+            <div class="finance-summary">
+
+                <div class="finance-box">
+                    <p>Total de entradas</p>
+                    <strong class="income" id="finEntradas">R$ 0,00</strong>
+                </div>
+
+                <div class="finance-box">
+                    <p>Total de saídas</p>
+                    <strong class="expense" id="finSaidas">R$ 0,00</strong>
+                </div>
+
+                <div class="finance-box">
+                    <p>Saldo atual</p>
+                    <strong id="finSaldo">R$ 0,00</strong>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Nova movimentação</h3>
+                        <p>Adicione uma entrada ou despesa.</p>
+                    </div>
+                </div>
+
+                <form id="formFinanceiro">
+
+                    <div class="form-grid three">
+
+                        <div class="field">
+                            <label for="finDescricao">Descrição *</label>
+                            <input id="finDescricao" required maxlength="180">
+                        </div>
+
+                        <div class="field">
+                            <label for="finTipo">Tipo *</label>
+                            <select id="finTipo">
+                                <option value="entrada">Entrada</option>
+                                <option value="saida">Saída</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="finValor">Valor (R$) *</label>
+                            <input id="finValor" type="number" min="0.01"
+                                step="0.01" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="finData">Data *</label>
+                            <input id="finData" type="date" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="finCategoria">Categoria</label>
+                            <select id="finCategoria">
+                                <option>Procedimento</option>
+                                <option>Produto</option>
+                                <option>Aluguel</option>
+                                <option>Material</option>
+                                <option>Equipamento</option>
+                                <option>Marketing</option>
+                                <option>Impostos</option>
+                                <option>Outros</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="finObs">Observações</label>
+                            <input id="finObs" maxlength="250">
+                        </div>
+
+                    </div>
+
+                    <div class="form-footer">
+                        <button class="btn" type="submit">Registrar movimentação</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Histórico financeiro</h3>
+                        <p>Consulte todas as movimentações registradas.</p>
+                    </div>
+
+                    <input class="search-input"
+                        id="buscaFinanceiro"
+                        placeholder="Buscar movimentação..."
+                        style="max-width:260px"
+                        oninput="renderFinanceiro()">
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Descrição</th>
+                                <th>Categoria</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="listaFinanceiro"></tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             RELATÓRIOS
+             ===================================== -->
+
+        <section class="page" id="page-relatorios">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Relatórios</h2>
+                    <p>Resumo dos registros e resultados financeiros.</p>
+                </div>
+
+                <button class="btn" onclick="imprimirPagina()">
+                    Imprimir relatório
+                </button>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-label">Total de pacientes</div>
+                    <div class="stat-value" id="relPacientes">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Total de procedimentos</div>
+                    <div class="stat-value" id="relProcedimentos">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Procedimentos realizados</div>
+                    <div class="stat-value" id="relRealizados">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">Agendamentos</div>
+                    <div class="stat-value" id="relAgendamentos">0</div>
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Resumo financeiro</h3>
+                        <p>Valores calculados com base nas movimentações cadastradas.</p>
+                    </div>
+                </div>
+
+                <div class="finance-summary">
+
+                    <div class="finance-box">
+                        <p>Entradas</p>
+                        <strong class="income" id="relEntradas">R$ 0,00</strong>
+                    </div>
+
+                    <div class="finance-box">
+                        <p>Saídas</p>
+                        <strong class="expense" id="relSaidas">R$ 0,00</strong>
+                    </div>
+
+                    <div class="finance-box">
+                        <p>Saldo</p>
+                        <strong id="relSaldo">R$ 0,00</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Procedimentos por status</h3>
+                    </div>
+                </div>
+
+                <div id="relStatus"></div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================
+             BACKUP
+             ===================================== -->
+
+        <section class="page" id="page-backup">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Backup e dados</h2>
+                    <p>Exporte e restaure seus registros.</p>
+                </div>
+            </div>
+
+            <div class="notice">
+                Atenção: esta versão armazena os dados no navegador deste
+                dispositivo. Ela não sincroniza automaticamente entre celulares
+                e computadores. O arquivo de backup também contém informações
+                pessoais e, possivelmente, dados sensíveis de saúde. Guarde-o
+                em local protegido.
+            </div>
+
+            <div class="settings-grid">
+
+                <div class="settings-option">
+                    <h3>Exportar backup completo</h3>
+                    <p>
+                        Salve pacientes, procedimentos, agendamentos e
+                        movimentações em um arquivo JSON.
+                    </p>
+
+                    <button class="btn" onclick="exportarBackup()">
+                        Baixar backup
+                    </button>
+                </div>
+
+                <div class="settings-option">
+                    <h3>Restaurar backup</h3>
+                    <p>
+                        Importe um backup JSON criado anteriormente.
+                        A restauração substitui os dados atuais.
+                    </p>
+
+                    <input type="file" id="arquivoBackup" accept=".json,application/json">
+
+                    <br><br>
+
+                    <button class="btn btn-light" onclick="importarBackup()">
+                        Restaurar dados
+                    </button>
+                </div>
+
+                <div class="settings-option">
+                    <h3>Exportar pacientes</h3>
+                    <p>
+                        Gere um arquivo CSV com os campos básicos dos
+                        pacientes cadastrados.
+                    </p>
+
+                    <button class="btn btn-light" onclick="exportarPacientesCSV()">
+                        Exportar pacientes CSV
+                    </button>
+                </div>
+
+                <div class="settings-option">
+                    <h3>Imprimir página</h3>
+                    <p>
+                        Abra a opção de impressão do navegador para imprimir
+                        a página atualmente selecionada.
+                    </p>
+
+                    <button class="btn btn-light" onclick="imprimirPagina()">
+                        Imprimir
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="card" style="margin-top:20px">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Apagar todos os dados</h3>
+                        <p>Esta ação remove os registros salvos neste navegador.</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-danger" onclick="apagarTudo()">
+                    Apagar todos os dados locais
+                </button>
+
+            </div>
+
+            <div class="card">
+
+                <div class="card-title">
+                    <div>
+                        <h3>Informações do sistema</h3>
+                    </div>
+                </div>
+
+                <p style="font-size:13px;line-height:2;color:var(--muted)">
+                    Nome: Dra. Thaise Paiva<br>
+                    Especialidade visual: Biomedicina Esteta<br>
+                    Tipo: Aplicação HTML local<br>
+                    Armazenamento: Navegador do dispositivo<br>
+                    Sincronização online: Não configurada
+                </p>
+
+            </div>
+
+        </section>
+
+        <footer class="footer">
+            <strong>Dra. Thaise Paiva</strong><br>
+            BIOMÉDICA ESTETA<br>
+            Sistema de organização e gestão de atendimentos
+        </footer>
+
+    </main>
+
+</div>
+
+<script>
+
+/* LOGIN SIMPLES ADICIONADO
+   Observação: credenciais no HTML não oferecem segurança real.
+   Para proteger dados reais, use autenticação no servidor. */
+(function configurarLogin() {
+    const EMAIL_CORRETO = "clinica@gmail.com";
+    const SENHA_CORRETA = "Clinica2026";
+
+    const form = document.getElementById("loginForm");
+    const gate = document.getElementById("loginGate");
+    const erro = document.getElementById("loginError");
+
+    function liberarAcesso() {
+        document.body.classList.add("autenticado");
+        gate.style.display = "none";
+    }
+
+    if (sessionStorage.getItem("thaise_login_ok") === "sim") {
+        liberarAcesso();
+    }
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+        const senha = document.getElementById("loginPassword").value;
+
+        if (email === EMAIL_CORRETO && senha === SENHA_CORRETA) {
+            sessionStorage.setItem("thaise_login_ok", "sim");
+            erro.style.display = "none";
+            liberarAcesso();
+        } else {
+            erro.style.display = "block";
+            document.getElementById("loginPassword").value = "";
+            document.getElementById("loginPassword").focus();
+        }
+    });
+})();
+
+/* ==========================================
+   DADOS E ARMAZENAMENTO
+   ========================================== */
+
+const CHAVES = {
+    pacientes: "thaise_pacientes_v1",
+    procedimentos: "thaise_procedimentos_v1",
+    agenda: "thaise_agenda_v1",
+    financeiro: "thaise_financeiro_v1"
+};
+
+function lerDados(chave) {
+    try {
+        const dados = localStorage.getItem(chave);
+        return dados ? JSON.parse(dados) : [];
+    } catch (erro) {
+        console.error("Erro ao ler dados:", erro);
+        return [];
+    }
+}
+
+function salvarDados(chave, dados) {
+    try {
+        localStorage.setItem(chave, JSON.stringify(dados));
+        return true;
+    } catch (erro) {
+        alert(
+            "Não foi possível salvar os dados. " +
+            "O armazenamento pode estar cheio. " +
+            "Exporte um backup e reduza o tamanho das fotos."
+        );
+        return false;
+    }
+}
+
+let pacientes = lerDados(CHAVES.pacientes);
+let procedimentos = lerDados(CHAVES.procedimentos);
+let agenda = lerDados(CHAVES.agenda);
+let financeiro = lerDados(CHAVES.financeiro);
+
+/* ==========================================
+   FUNÇÕES GERAIS
+   ========================================== */
+
+function el(id) {
+    return document.getElementById(id);
+}
+
+function moeda(valor) {
+    return Number(valor || 0).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+    });
+}
+
+function dataLocalHoje() {
+    const agora = new Date();
+    const ano = agora.getFullYear();
+    const mes = String(agora.getMonth() + 1).padStart(2, "0");
+    const dia = String(agora.getDate()).padStart(2, "0");
+
+    return `${ano}-${mes}-${dia}`;
+}
+
+function escapar(valor) {
+    return String(valor ?? "").replace(/[&<>"']/g, caractere => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[caractere]);
+}
+
+function dataBonita(data) {
+    if (!data) return "—";
+
+    const partes = String(data).split("-");
+
+    if (partes.length !== 3) return escapar(data);
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+}
+
+function idNovo() {
+    return Date.now().toString(36) +
+        Math.random().toString(36).slice(2, 9);
+}
+
+function nomePaciente(id) {
+    const paciente = pacientes.find(p => p.id === id);
+
+    return paciente ? paciente.nome : "Paciente não encontrado";
+}
+
+function salvarTudo() {
+    salvarDados(CHAVES.pacientes, pacientes);
+    salvarDados(CHAVES.procedimentos, procedimentos);
+    salvarDados(CHAVES.agenda, agenda);
+    salvarDados(CHAVES.financeiro, financeiro);
+}
+
+function notificar(mensagem) {
+    alert(mensagem);
+}
+
+/* ==========================================
+   NAVEGAÇÃO
+   ========================================== */
+
+document.querySelectorAll(".menu-button").forEach(botao => {
+    botao.addEventListener("click", () => {
+        abrirPagina(botao.dataset.page);
+    });
+});
+
+function abrirPagina(nome) {
+    document.querySelectorAll(".page").forEach(pagina => {
+        pagina.classList.remove("active");
+    });
+
+    document.querySelectorAll(".menu-button").forEach(botao => {
+        botao.classList.toggle(
+            "active",
+            botao.dataset.page === nome
+        );
+    });
+
+    const pagina = el("page-" + nome);
+
+    if (pagina) {
+        pagina.classList.add("active");
+    }
+
+    atualizarTudo();
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+function imprimirPagina() {
+    window.print();
+}
+
+/* ==========================================
+   PACIENTES
+   ========================================== */
+
+function novoPaciente() {
+    abrirPagina("pacientes");
+    limparFormPaciente();
+
+    el("formPacienteCard").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    el("pacNome").focus();
+}
+
+function limparFormPaciente() {
+    el("formPaciente").reset();
+    el("pacienteId").value = "";
+    el("pacData").value = dataLocalHoje();
+    el("tituloFormPaciente").textContent = "Cadastrar paciente";
+}
+
+el("formPaciente").addEventListener("submit", evento => {
+    evento.preventDefault();
+
+    const id = el("pacienteId").value;
+
+    const registro = {
+        id: id || idNovo(),
+        nome: el("pacNome").value.trim(),
+        telefone: el("pacTelefone").value.trim(),
+        email: el("pacEmail").value.trim(),
+        nascimento: el("pacNascimento").value,
+        data: el("pacData").value,
+        contato: el("pacContato").value.trim(),
+        anamnese: el("pacAnamnese").value.trim(),
+        alergias: el("pacAlergias").value.trim(),
+        medicamentos: el("pacMedicamentos").value.trim(),
+        observacoes: el("pacObservacoes").value.trim()
+    };
+
+    if (!registro.nome) {
+        notificar("Informe o nome do paciente.");
+        return;
+    }
+
+    if (id) {
+        const indice = pacientes.findIndex(p => p.id === id);
+
+        if (indice !== -1) {
+            pacientes[indice] = registro;
+        }
+    } else {
+        pacientes.push(registro);
+    }
+
+    salvarDados(CHAVES.pacientes, pacientes);
+
+    limparFormPaciente();
+    atualizarTudo();
+
+    notificar("Paciente salvo com sucesso!");
+});
+
+function editarPaciente(id) {
+    const p = pacientes.find(paciente => paciente.id === id);
+
+    if (!p) return;
+
+    abrirPagina("pacientes");
+
+    el("pacienteId").value = p.id;
+    el("pacNome").value = p.nome || "";
+    el("pacTelefone").value = p.telefone || "";
+    el("pacEmail").value = p.email || "";
+    el("pacNascimento").value = p.nascimento || "";
+    el("pacData").value = p.data || "";
+    el("pacContato").value = p.contato || "";
+    el("pacAnamnese").value = p.anamnese || "";
+    el("pacAlergias").value = p.alergias || "";
+    el("pacMedicamentos").value = p.medicamentos || "";
+    el("pacObservacoes").value = p.observacoes || "";
+
+    el("tituloFormPaciente").textContent = "Editar paciente";
+
+    el("formPacienteCard").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function excluirPaciente(id) {
+    const possuiHistorico = procedimentos.some(p => p.pacienteId === id) ||
+        agenda.some(a => a.pacienteId === id);
+
+    const mensagem = possuiHistorico
+        ? "Este paciente possui registros relacionados. Excluir o cadastro e os registros de atendimento relacionados?"
+        : "Deseja excluir este paciente?";
+
+    if (!confirm(mensagem)) return;
+
+    pacientes = pacientes.filter(p => p.id !== id);
+
+    procedimentos = procedimentos.filter(p => p.pacienteId !== id);
+
+    agenda = agenda.filter(a => a.pacienteId !== id);
+
+    salvarTudo();
+    atualizarTudo();
+
+    notificar("Cadastro excluído.");
+}
+
+function renderPacientes() {
+    const busca = (el("buscaPaciente").value || "").toLowerCase();
+
+    const filtrados = pacientes.filter(p => {
+        return (p.nome || "").toLowerCase().includes(busca) ||
+            (p.telefone || "").toLowerCase().includes(busca) ||
+            (p.email || "").toLowerCase().includes(busca);
+    });
+
+    const corpo = el("listaPacientes");
+
+    if (!filtrados.length) {
+        corpo.innerHTML = `
+            <tr>
+                <td colspan="5" class="empty-state">
+                    Nenhum paciente encontrado.
+                </td>
+            </tr>`;
+        return;
+    }
+
+    corpo.innerHTML = filtrados.map(p => `
+        <tr>
+            <td>
+                <strong>${escapar(p.nome)}</strong>
+                <br>
+                <span style="color:var(--muted)">
+                    ${escapar(p.email || "")}
+                </span>
+            </td>
+
+            <td>${escapar(p.telefone || "—")}</td>
+
+            <td>${dataBonita(p.nascimento)}</td>
+
+            <td>${dataBonita(p.data)}</td>
+
+            <td>
+                <div class="actions">
+                    <button class="btn btn-small btn-light"
+                        onclick="editarPaciente('${p.id}')">
+                        Editar
+                    </button>
+
+                    <button class="btn btn-small btn-light"
+                        onclick="verFichaPaciente('${p.id}')">
+                        Ficha
+                    </button>
+
+                    <button class="btn btn-small btn-danger"
+                        onclick="excluirPaciente('${p.id}')">
+                        Excluir
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `).join("");
+}
+
+function verFichaPaciente(id) {
+    const p = pacientes.find(paciente => paciente.id === id);
+
+    if (!p) return;
+
+    const relacionados = procedimentos.filter(proc => proc.pacienteId === id);
+
+    const ficha = `
+PACIENTE: ${p.nome}
+TELEFONE: ${p.telefone || "Não informado"}
+E-MAIL: ${p.email || "Não informado"}
+NASCIMENTO: ${dataBonita(p.nascimento)}
+CADASTRO: ${dataBonita(p.data)}
+
+ANAMNESE:
+${p.anamnese || "Não preenchida"}
+
+ALERGIAS:
+${p.alergias || "Não informado"}
+
+MEDICAMENTOS:
+${p.medicamentos || "Não informado"}
+
+OBSERVAÇÕES:
+${p.observacoes || "Nenhuma"}
+
+PROCEDIMENTOS:
+${relacionados.map(proc =>
+    "- " + proc.nome + " | " +
+    dataBonita(proc.data) + " | " +
+    proc.status
+).join("\n") || "Nenhum procedimento registrado."}
+`;
+
+    const janela = window.open("", "_blank");
+
+    if (!janela) {
+        notificar("Permita a abertura de janelas para consultar a ficha.");
+        return;
+    }
+
+    const documento = janela.document;
+
+    documento.title = "Ficha do paciente";
+
+    const pre = documento.createElement("pre");
+
+    pre.style.cssText =
+        "white-space:pre-wrap;font:14px Arial;padding:25px;line-height:1.8";
+
+    pre.textContent = ficha;
+
+    documento.body.appendChild(pre);
+}
+
+/* ==========================================
+   PROCEDIMENTOS
+   ========================================== */
+
+function novoProcedimento() {
+    abrirPagina("procedimentos");
+    limparFormProcedimento();
+
+    el("formProcedimento").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function limparFormProcedimento() {
+    el("formProcedimento").reset();
+    el("procId").value = "";
+    el("procData").value = dataLocalHoje();
+    el("procValor").value = "0";
+    el("previewAntes").src = "";
+    el("previewDepois").src = "";
+    el("previewAntes").classList.remove("visible");
+    el("previewDepois").classList.remove("visible");
+}
+
+function carregarSelectPacientes() {
+    const opcoes = pacientes.map(p => `
+        <option value="${escapar(p.id)}">
+            ${escapar(p.nome)}
+        </option>
+    `).join("");
+
+    const padrao = '<option value="">Selecione um paciente</option>';
+
+    el("procPaciente").innerHTML = padrao + opcoes;
+    el("agendaPaciente").innerHTML = padrao + opcoes;
+}
+
+function prepararPreview(inputId, previewId) {
+    el(inputId).addEventListener("change", () => {
+        const arquivo = el(inputId).files[0];
+        const preview = el(previewId);
+
+        if (!arquivo) {
+            preview.src = "";
+            preview.classList.remove("visible");
+            return;
+        }
+
+        if (!arquivo.type.startsWith("image/")) {
+            notificar("Selecione um arquivo de imagem.");
+            el(inputId).value = "";
+            return;
+        }
+
+        if (arquivo.size > 3 * 1024 * 1024) {
+            notificar("A imagem deve ter no máximo 3 MB.");
+            el(inputId).value = "";
+            return;
+        }
+
+        const leitor = new FileReader();
+
+        leitor.onload = () => {
+            preview.src = leitor.result;
+            preview.classList.add("visible");
+        };
+
+        leitor.readAsDataURL(arquivo);
+    });
+}
+
+prepararPreview("fotoAntes", "previewAntes");
+prepararPreview("fotoDepois", "previewDepois");
+
+function lerImagem(arquivo) {
+    return new Promise((resolve, reject) => {
+        if (!arquivo) {
+            resolve("");
+            return;
+        }
+
+        if (!arquivo.type.startsWith("image/")) {
+            reject(new Error("Arquivo inválido."));
+            return;
+        }
+
+        if (arquivo.size > 3 * 1024 * 1024) {
+            reject(new Error("A imagem deve ter no máximo 3 MB."));
+            return;
+        }
+
+        const leitor = new FileReader();
+
+        leitor.onload = () => resolve(leitor.result);
+        leitor.onerror = () => reject(new Error("Erro ao ler imagem."));
+
+        leitor.readAsDataURL(arquivo);
+    });
+}
+
+el("formProcedimento").addEventListener("submit", async evento => {
+    evento.preventDefault();
+
+    if (!pacientes.length) {
+        notificar("Cadastre um paciente antes de registrar procedimentos.");
+        return;
+    }
+
+    const pacienteId = el("procPaciente").value;
+
+    if (!pacientes.some(p => p.id === pacienteId)) {
+        notificar("Selecione um paciente válido.");
+        return;
+    }
+
+    try {
+        const id = el("procId").value;
+
+        const existente = procedimentos.find(p => p.id === id);
+
+        const antesArquivo = el("fotoAntes").files[0];
+        const depoisArquivo = el("fotoDepois").files[0];
+
+        const antes = antesArquivo
+            ? await lerImagem(antesArquivo)
+            : (existente?.antes || "");
+
+        const depois = depoisArquivo
+            ? await lerImagem(depoisArquivo)
+            : (existente?.depois || "");
+
+        const registro = {
+            id: id || idNovo(),
+            pacienteId,
+            nome: el("procNome").value.trim(),
+            data: el("procData").value,
+            valor: Number(el("procValor").value || 0),
+            status: el("procStatus").value,
+            pagamento: el("procPagamento").value,
+            descricao: el("procDescricao").value.trim(),
+            antes,
+            depois
+        };
+
+        if (id) {
+            const indice = procedimentos.findIndex(p => p.id === id);
+
+            if (indice !== -1) {
+                procedimentos[indice] = registro;
+            }
+        } else {
+            procedimentos.push(registro);
+        }
+
+        salvarDados(CHAVES.procedimentos, procedimentos);
+
+        limparFormProcedimento();
+        atualizarTudo();
+
+        notificar("Procedimento salvo com sucesso!");
+
+    } catch (erro) {
+        notificar(erro.message || "Não foi possível salvar o procedimento.");
+    }
+});
+
+function editarProcedimento(id) {
+    const p = procedimentos.find(proc => proc.id === id);
+
+    if (!p) return;
+
+    abrirPagina("procedimentos");
+
+    el("procId").value = p.id;
+    el("procPaciente").value = p.pacienteId;
+    el("procNome").value = p.nome || "";
+    el("procData").value = p.data || "";
+    el("procValor").value = p.valor || 0;
+    el("procStatus").value = p.status || "Agendado";
+    el("procPagamento").value = p.pagamento || "Pendente";
+    el("procDescricao").value = p.descricao || "";
+
+    if (p.antes) {
+        el("previewAntes").src = p.antes;
+        el("previewAntes").classList.add("visible");
+    }
+
+    if (p.depois) {
+        el("previewDepois").src = p.depois;
+        el("previewDepois").classList.add("visible");
+    }
+
+    el("formProcedimento").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+function excluirProcedimento(id) {
+    if (!confirm("Deseja excluir este procedimento?")) return;
+
+    procedimentos = procedimentos.filter(p => p.id !== id);
+
+    salvarDados(CHAVES.procedimentos, procedimentos);
+
+    atualizarTudo();
+}
+
+function abrirFoto(id, tipo) {
+    const p = procedimentos.find(proc => proc.id === id);
+
+    if (!p || !p[tipo]) {
+        notificar("Nenhuma imagem cadastrada.");
+        return;
+    }
+
+    const janela = window.open("", "_blank");
+
+    if (!janela) {
+        notificar("Permita a abertura de janelas para visualizar a imagem.");
+        return;
+    }
+
+    const imagem = janela.document.createElement("img");
+
+    imagem.src = p[tipo];
+    imagem.alt = tipo === "antes" ? "Foto antes" : "Foto depois";
+    imagem.style.cssText = "max-width:100%;height:auto;display:block;margin:auto";
+
+    janela.document.body.style.cssText =
+        "margin:0;padding:20px;background:#f8f4f1;text-align:center";
+
+    janela.document.body.appendChild(imagem);
+}
+
+function renderProcedimentos() {
+    const busca = (el("buscaProcedimento").value || "").toLowerCase();
+
+    const lista = procedimentos
+        .filter(p => {
+            return (p.nome || "").toLowerCase().includes(busca) ||
+                nomePaciente(p.pacienteId).toLowerCase().includes(busca);
+        })
+        .slice()
+        .sort((a, b) => (b.data || "").localeCompare(a.data || ""));
+
+    const corpo = el("listaProcedimentos");
+
+    if (!lista.length) {
+        corpo.innerHTML = `
+            <tr>
+                <td colspan="7" class="empty-state">
+                    Nenhum procedimento encontrado.
+                </td>
+            </tr>`;
+        return;
+    }
+
+    corpo.innerHTML = lista.map(p => `
+        <tr>
+            <td>${escapar(nomePaciente(p.pacienteId))}</td>
+
+            <td>
+                <strong>${escapar(p.nome)}</strong>
+                <br>
+                <span style="color:var(--muted)">
+                    ${escapar(p.pagamento || "")}
+                </span>
+            </td>
+
+            <td>${dataBonita(p.data)}</td>
+
+            <td>${moeda(p.valor)}</td>
+
+            <td>${badgeStatus(p.status)}</td>
+
+            <td>
+                ${p.antes
+                    ? `<button class="btn btn-small btn-light"
+                        onclick="abrirFoto('${p.id}','antes')">Antes</button>`
+                    : ""}
+
+                ${p.depois
+                    ? `<button class="btn btn-small btn-light"
+                        onclick="abrirFoto('${p.id}','depois')">Depois</button>`
+                    : ""}
+
+                ${!p.antes && !p.depois ? "—" : ""}
+            </td>
+
+            <td>
+                <div class="actions">
+                    <button class="btn btn-small btn-light"
+                        onclick="editarProcedimento('${p.id}')">
+                        Editar
+                    </button>
+
+                    <button class="btn btn-small btn-danger"
+                        onclick="excluirProcedimento('${p.id}')">
+                        Excluir
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `).join("");
+}
+
+function badgeStatus(status) {
+    const classe = {
+        "Realizado": "badge-green",
+        "Confirmado": "badge-green",
+        "Agendado": "badge-yellow",
+        "Em andamento": "badge-blue",
+        "Cancelado": "badge-red"
+    }[status] || "badge-yellow";
+
+    return `<span class="badge ${classe}">${escapar(status || "Agendado")}</span>`;
+}
+
+/* ==========================================
+   AGENDA
+   ========================================== */
+
+el("formAgenda").addEventListener("submit", evento => {
+    evento.preventDefault();
+
+    const pacienteId = el("agendaPaciente").value;
+
+    if (!pacientes.some(p => p.id === pacienteId)) {
+        notificar("Selecione um paciente cadastrado.");
+        return;
+    }
+
+    const registro = {
+        id: idNovo(),
+        pacienteId,
+        procedimento: el("agendaProcedimento").value.trim(),
+        data: el("agendaData").value,
+        hora: el("agendaHora").value,
+        status: el("agendaStatus").value,
+        observacoes: el("agendaObs").value.trim()
+    };
+
+    agenda.push(registro);
+
+    salvarDados(CHAVES.agenda, agenda);
+
+    evento.target.reset();
+
+    el("agendaData").value = dataLocalHoje();
+
+    atualizarTudo();
+
+    notificar("Agendamento registrado!");
+});
+
+function excluirAgendamento(id) {
+    if (!confirm("Deseja excluir este agendamento?")) return;
+
+    agenda = agenda.filter(a => a.id !== id);
+
+    salvarDados(CHAVES.agenda, agenda);
+
+    atualizarTudo();
+}
+
+function mudarStatusAgenda(id, status) {
+    const a = agenda.find(item => item.id === id);
+
+    if (!a) return;
+
+    a.status = status;
+
+    salvarDados(CHAVES.agenda, agenda);
+
+    atualizarTudo();
+}
+
+function ordenarAgenda(lista) {
+    return lista.slice().sort((a, b) => {
+        const dataA = (a.data || "") + "T" + (a.hora || "00:00");
+        const dataB = (b.data || "") + "T" + (b.hora || "00:00");
+
+        return dataA.localeCompare(dataB);
+    });
+}
+
+function renderAgenda() {
+    const container = el("listaAgenda");
+
+    const lista = ordenarAgenda(agenda);
+
+    if (!lista.length) {
+        container.innerHTML = `
+            <div class="empty-state">
+                Nenhum agendamento registrado.
+            </div>`;
+        return;
+    }
+
+    container.innerHTML = lista.map(a => {
+        const partes = (a.data || "").split("-");
+        const dia = partes.length === 3 ? partes[2] : "--";
+        const mes = partes.length === 3 ? partes[1] : "--";
+
+        return `
+            <div class="appointment-item">
+
+                <div class="appointment-date">
+                    <strong>${escapar(dia)}</strong>
+                    <span>${escapar(mes)}</span>
+                </div>
+
+                <div class="appointment-info">
+                    <strong>${escapar(nomePaciente(a.pacienteId))}</strong>
+                    <p>${escapar(a.procedimento)}</p>
+                    <p>${escapar(a.hora)} · ${badgeStatus(a.status)}</p>
+
+                    ${a.observacoes
+                        ? `<p>${escapar(a.observacoes)}</p>`
+                        : ""}
+                </div>
+
+                <div class="actions">
+                    <select aria-label="Status do agendamento"
+                        onchange="mudarStatusAgenda('${a.id}',this.value)"
+                        style="max-width:140px;padding:8px;border:1px solid var(--border);border-radius:8px">
+
+                        ${["Agendado","Confirmado","Realizado","Cancelado"]
+                            .map(s => `<option value="${s}" ${a.status === s ? "selected" : ""}>${s}</option>`)
+                            .join("")}
+
+                    </select>
+
+                    <button class="btn btn-small btn-danger"
+                        onclick="excluirAgendamento('${a.id}')">
+                        Excluir
+                    </button>
+                </div>
+
+            </div>
+        `;
+    }).join("");
+}
+
+function renderAgendaDashboard() {
+    const container = el("dashboardAgenda");
+
+    const hoje = dataLocalHoje();
+
+    const proximos = ordenarAgenda(agenda.filter(a =>
+        a.data >= hoje &&
+        a.status !== "Cancelado" &&
+        a.status !== "Realizado"
+    )).slice(0, 4);
+
+    if (!proximos.length) {
+        container.innerHTML = `
+            <div class="empty-state">
+                Nenhum próximo atendimento registrado.
+            </div>`;
+        return;
+    }
+
+    container.innerHTML = proximos.map(a => `
+        <div class="appointment-item">
+
+            <div class="appointment-date">
+                <strong>${escapar((a.data || "").split("-")[2] || "--")}</strong>
+                <span>${escapar((a.data || "").split("-")[1] || "--")}</span>
+            </div>
+
+            <div class="appointment-info">
+                <strong>${escapar(nomePaciente(a.pacienteId))}</strong>
+                <p>${escapar(a.procedimento)}</p>
+                <p>${dataBonita(a.data)} · ${escapar(a.hora)}</p>
+            </div>
+
+            ${badgeStatus(a.status)}
+
+        </div>
+    `).join("");
+}
+
+/* ==========================================
+   FINANCEIRO
+   ========================================== */
+
+el("formFinanceiro").addEventListener("submit", evento => {
+    evento.preventDefault();
+
+    const valor = Number(el("finValor").value);
+
+    if (!Number.isFinite(valor) || valor <= 0) {
+        notificar("Informe um valor maior que zero.");
+        return;
+    }
+
+    const registro = {
+        id: idNovo(),
+        descricao: el("finDescricao").value.trim(),
+        tipo: el("finTipo").value,
+        valor,
+        data: el("finData").value,
+        categoria: el("finCategoria").value,
+        observacoes: el("finObs").value.trim()
+    };
+
+    financeiro.push(registro);
+
+    salvarDados(CHAVES.financeiro, financeiro);
+
+    evento.target.reset();
+
+    el("finData").value = dataLocalHoje();
+
+    atualizarTudo();
+
+    notificar("Movimentação financeira registrada!");
+});
+
+function excluirMovimento(id) {
+    if (!confirm("Deseja excluir esta movimentação financeira?")) return;
+
+    financeiro = financeiro.filter(f => f.id !== id);
+
+    salvarDados(CHAVES.financeiro, financeiro);
+
+    atualizarTudo();
+}
+
+function calcularFinanceiro() {
+    const entradas = financeiro
+        .filter(f => f.tipo === "entrada")
+        .reduce((total, f) => total + Number(f.valor || 0), 0);
+
+    const saidas = financeiro
+        .filter(f => f.tipo === "saida")
+        .reduce((total, f) => total + Number(f.valor || 0), 0);
+
+    return {
+        entradas,
+        saidas,
+        saldo: entradas - saidas
+    };
+}
+
+function renderFinanceiro() {
+    const busca = (el("buscaFinanceiro").value || "").toLowerCase();
+
+    const lista = financeiro
+        .filter(f =>
+            (f.descricao || "").toLowerCase().includes(busca) ||
+            (f.categoria || "").toLowerCase().includes(busca)
+        )
+        .slice()
+        .sort((a, b) => (b.data || "").localeCompare(a.data || ""));
+
+    const corpo = el("listaFinanceiro");
+
+    if (!lista.length) {
+        corpo.innerHTML = `
+            <tr>
+                <td colspan="6" class="empty-state">
+                    Nenhuma movimentação encontrada.
+                </td>
+            </tr>`;
+    } else {
+        corpo.innerHTML = lista.map(f => `
+            <tr>
+                <td>${dataBonita(f.data)}</td>
+
+                <td>
+                    <strong>${escapar(f.descricao)}</strong>
+                    ${f.observacoes
+                        ? `<br><span style="color:var(--muted)">${escapar(f.observacoes)}</span>`
+                        : ""}
+                </td>
+
+                <td>${escapar(f.categoria || "Outros")}</td>
+
+                <td>
+                    <span class="badge ${f.tipo === "entrada" ? "badge-green" : "badge-red"}">
+                        ${f.tipo === "entrada" ? "Entrada" : "Saída"}
+                    </span>
+                </td>
+
+                <td class="${f.tipo === "entrada" ? "income" : "expense"}">
+                    <strong>${moeda(f.valor)}</strong>
+                </td>
+
+                <td>
+                    <button class="btn btn-small btn-danger"
+                        onclick="excluirMovimento('${f.id}')">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+        `).join("");
+    }
+
+    const totais = calcularFinanceiro();
+
+    el("finEntradas").textContent = moeda(totais.entradas);
+    el("finSaidas").textContent = moeda(totais.saidas);
+    el("finSaldo").textContent = moeda(totais.saldo);
+
+    el("dashEntradas").textContent = moeda(totais.entradas);
+    el("dashSaldo").textContent = moeda(totais.saldo);
+}
+
+/* ==========================================
+   RELATÓRIOS
+   ========================================== */
+
+function renderRelatorios() {
+    const totais = calcularFinanceiro();
+
+    el("relPacientes").textContent = pacientes.length;
+    el("relProcedimentos").textContent = procedimentos.length;
+
+    el("relRealizados").textContent =
+        procedimentos.filter(p => p.status === "Realizado").length;
+
+    el("relAgendamentos").textContent = agenda.length;
+
+    el("relEntradas").textContent = moeda(totais.entradas);
+    el("relSaidas").textContent = moeda(totais.saidas);
+    el("relSaldo").textContent = moeda(totais.saldo);
+
+    const statusPossiveis = [
+        "Agendado",
+        "Em andamento",
+        "Realizado",
+        "Cancelado"
+    ];
+
+    el("relStatus").innerHTML = statusPossiveis.map(status => {
+        const quantidade = procedimentos.filter(p => p.status === status).length;
+
+        return `
+            <div style="margin-bottom:15px">
+                <div style="display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;font-size:12px">
+                    <span>${escapar(status)}</span>
+                    <strong>${quantidade}</strong>
+                </div>
+
+                <div style="height:8px;border-radius:10px;background:#f1e7e3;overflow:hidden">
+                    <div style="height:100%;width:${
+                        procedimentos.length
+                            ? (quantidade / procedimentos.length * 100)
+                            : 0
+                    }%;background:var(--rose);border-radius:10px"></div>
+                </div>
+            </div>
+        `;
+    }).join("");
+}
+
+function renderDashboard() {
+    el("dashPacientes").textContent = pacientes.length;
+    el("dashProcedimentos").textContent = procedimentos.length;
+
+    const recentes = procedimentos
+        .slice()
+        .sort((a, b) => (b.data || "").localeCompare(a.data || ""))
+        .slice(0, 5);
+
+    const corpo = el("dashboardRecentes");
+
+    if (!recentes.length) {
+        corpo.innerHTML = `
+            <tr>
+                <td colspan="4" class="empty-state">
+                    Nenhum procedimento registrado.
+                </td>
+            </tr>`;
+    } else {
+        corpo.innerHTML = recentes.map(p => `
+            <tr>
+                <td>${escapar(nomePaciente(p.pacienteId))}</td>
+                <td>${escapar(p.nome)}</td>
+                <td>${dataBonita(p.data)}</td>
+                <td>${badgeStatus(p.status)}</td>
+            </tr>
+        `).join("");
+    }
+
+    renderAgendaDashboard();
+}
+
+/* ==========================================
+   EXPORTAÇÃO DE DADOS
+   ========================================== */
+
+function baixarArquivo(nome, conteudo, tipo) {
+    const blob = new Blob([conteudo], { type: tipo });
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+
+    link.href = url;
+    link.download = nome;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function exportarBackup() {
+    const dados = {
+        sistema: "Dra. Thaise Paiva",
+        versao: 1,
+        dataExportacao: new Date().toISOString(),
+        pacientes,
+        procedimentos,
+        agenda,
+        financeiro
+    };
+
+    baixarArquivo(
+        "backup-thaise-paiva.json",
+        JSON.stringify(dados, null, 2),
+        "application/json"
+    );
+}
+
+function importarBackup() {
+    const arquivo = el("arquivoBackup").files[0];
+
+    if (!arquivo) {
+        notificar("Selecione um arquivo de backup JSON.");
+        return;
+    }
+
+    const leitor = new FileReader();
+
+    leitor.onload = () => {
+        try {
+            const dados = JSON.parse(leitor.result);
+
+            if (
+                !dados ||
+                !Array.isArray(dados.pacientes) ||
+                !Array.isArray(dados.procedimentos) ||
+                !Array.isArray(dados.agenda) ||
+                !Array.isArray(dados.financeiro)
+            ) {
+                throw new Error("Estrutura inválida");
+            }
+
+            if (!confirm(
+                "Atenção: os registros atuais serão substituídos. " +
+                "Deseja continuar?"
+            )) {
+                return;
+            }
+
+            pacientes = dados.pacientes;
+            procedimentos = dados.procedimentos;
+            agenda = dados.agenda;
+            financeiro = dados.financeiro;
+
+            salvarTudo();
+            atualizarTudo();
+
+            notificar("Backup restaurado com sucesso!");
+
+        } catch (erro) {
+            notificar("Não foi possível importar esse arquivo. Verifique se é um backup válido.");
+        }
+    };
+
+    leitor.readAsText(arquivo);
+}
+
+function exportarPacientesCSV() {
+    const cabecalho = [
+        "Nome",
+        "Telefone",
+        "Email",
+        "Nascimento",
+        "Data cadastro"
+    ];
+
+    const linhas = pacientes.map(p => [
+        p.nome,
+        p.telefone,
+        p.email,
+        p.nascimento,
+        p.data
+    ]);
+
+    const csv = [cabecalho, ...linhas]
+        .map(linha => linha.map(valor => {
+            return '"' + String(valor ?? "").replace(/"/g, '""') + '"';
+        }).join(";"))
+        .join("\r\n");
+
+    baixarArquivo(
+        "pacientes-thaise-paiva.csv",
+        "\uFEFF" + csv,
+        "text/csv;charset=utf-8"
+    );
+}
+
+function exportarFinanceiroCSV() {
+    const cabecalho = [
+        "Data",
+        "Descricao",
+        "Categoria",
+        "Tipo",
+        "Valor",
+        "Observacoes"
+    ];
+
+    const linhas = financeiro.map(f => [
+        f.data,
+        f.descricao,
+        f.categoria,
+        f.tipo,
+        f.valor,
+        f.observacoes
+    ]);
+
+    const csv = [cabecalho, ...linhas]
+        .map(linha => linha.map(valor => {
+            return '"' + String(valor ?? "").replace(/"/g, '""') + '"';
+        }).join(";"))
+        .join("\r\n");
+
+    baixarArquivo(
+        "financeiro-thaise-paiva.csv",
+        "\uFEFF" + csv,
+        "text/csv;charset=utf-8"
+    );
+}
+
+/* ==========================================
+   APAGAR DADOS
+   ========================================== */
+
+function apagarTudo() {
+    const confirmacao = prompt(
+        "Para apagar os dados locais, digite APAGAR."
+    );
+
+    if (confirmacao !== "APAGAR") {
+        notificar("Operação cancelada.");
+        return;
+    }
+
+    pacientes = [];
+    procedimentos = [];
+    agenda = [];
+    financeiro = [];
+
+    salvarTudo();
+    atualizarTudo();
+
+    notificar("Os dados locais foram apagados.");
+}
+
+/* ==========================================
+   ATUALIZAÇÃO DO SISTEMA
+   ========================================== */
+
+function atualizarTudo() {
+    carregarSelectPacientes();
+
+    renderPacientes();
+    renderProcedimentos();
+    renderAgenda();
+    renderFinanceiro();
+    renderDashboard();
+    renderRelatorios();
+}
+
+/* ==========================================
+   INICIALIZAÇÃO
+   ========================================== */
+
+function iniciarSistema() {
+    el("pacData").value = dataLocalHoje();
+    el("procData").value = dataLocalHoje();
+    el("agendaData").value = dataLocalHoje();
+    el("finData").value = dataLocalHoje();
+
+    atualizarTudo();
+}
+
+iniciarSistema();
+</script>
+
+</body>
+</html>
